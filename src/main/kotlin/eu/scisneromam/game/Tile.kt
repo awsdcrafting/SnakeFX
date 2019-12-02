@@ -19,4 +19,32 @@ class Tile(
     {
         return "Tile(x=$x, y=$y, state=$state, direction=$direction, game=$game)"
     }
+
+    override fun equals(other: Any?): Boolean
+    {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Tile
+
+        if (x != other.x) return false
+        if (y != other.y) return false
+        if (state != other.state) return false
+        if (direction != other.direction) return false
+        if (game != other.game) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int
+    {
+        var result = x
+        result = 31 * result + y
+        result = 31 * result + state.hashCode()
+        result = 31 * result + direction.hashCode()
+        result = 31 * result + game.hashCode()
+        return result
+    }
+
+
 }
