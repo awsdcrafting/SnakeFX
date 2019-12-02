@@ -20,11 +20,6 @@ class Game(override val gameInfo: GameInfo) : IGame
 
     lateinit var appleTile: Tile
 
-    override fun getApple(): Tile
-    {
-        return appleTile
-    }
-
     override val changedTiles: MutableList<Tile> = ArrayList()
     /**
      * Keeps track of all tiles where things can be put
@@ -48,12 +43,15 @@ class Game(override val gameInfo: GameInfo) : IGame
         }
     override var gameStatus: GameStatus = GameStatus.PAUSED
 
-    override val snake: Snake = when (gameInfo.snakeType)
+    val snake: Snake = when (gameInfo.snakeType)
     {
         SnakeType.STRICT_HAMILTONIAN -> HamiltonianSnake(this)
         SnakeType.CUTTING_HAMILTONIAN -> CuttingHamiltonianSnake(this)
         else -> PlayerSnake(this)
     }
+
+    override val snakes: MutableMap<Snake, MoveDirection> = HashMap()
+    override val appleTiles: MutableList<Tile> = ArrayList()
 
     init
     {

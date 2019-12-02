@@ -42,4 +42,31 @@ abstract class Snake(val game: IGame, val player: Boolean)
 
     abstract fun getMoveDirection(): MoveDirection
 
+    override fun equals(other: Any?): Boolean
+    {
+        if (this === other) return true
+        if (other !is Snake) return false
+
+        if (game != other.game) return false
+        if (player != other.player) return false
+        if (headTile != other.headTile) return false
+        if (tailTile != other.tailTile) return false
+        if (length != other.length) return false
+        if (apples != other.apples) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int
+    {
+        var result = game.hashCode()
+        result = 31 * result + player.hashCode()
+        result = 31 * result + headTile.hashCode()
+        result = 31 * result + tailTile.hashCode()
+        result = 31 * result + length
+        result = 31 * result + apples
+        return result
+    }
+
+
 }

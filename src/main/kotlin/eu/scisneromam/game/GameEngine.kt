@@ -39,7 +39,10 @@ class GameEngine(val gui: GameGui, val game: IGame) : Thread()
                 futureTask.get()
                 if (gameOver)
                 {
-                    println("The Game ended with the status ${game.gameStatus}, and the snake had a length of ${game.snake.length}")
+                    for (snake in game.snakes.keys)
+                    {
+                        println("The Game ended with the status ${game.gameStatus}, and the snake had a length of ${snake.length}")
+                    }
                     game.paused = true
                 }
             } else if (!paused)

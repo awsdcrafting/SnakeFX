@@ -180,7 +180,7 @@ class GameGui(private val game: IGame) : View("SnakeFX")
                             game.gameInfo.deadHeadColor
                         } else if (game.gameInfo.rainbowSnake)
                         {
-                            game.snake.rainbow.getNext()
+                            tile.snake?.rainbow?.getNext() ?: game.gameInfo.snakeHeadColor
                         } else
                         {
                             game.gameInfo.snakeHeadColor

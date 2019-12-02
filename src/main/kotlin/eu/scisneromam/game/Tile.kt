@@ -1,5 +1,8 @@
 package eu.scisneromam.game
 
+import eu.scisneromam.game.snake.Snake
+import kotlin.math.sqrt
+
 /**
  * Project: SnakeFX
  * Initially created by scisneromam on 30.11.2019.
@@ -15,6 +18,19 @@ class Tile(
     val game: IGame
 )
 {
+    var snake : Snake? = null
+
+    fun distTo(other: Tile): Double
+    {
+        if (this.game != other.game)
+        {
+            return -1.0
+        }
+        val xDelta = x - other.x
+        val yDelta = y - other.y
+        return sqrt((xDelta * xDelta + yDelta * yDelta).toDouble())
+    }
+
     override fun toString(): String
     {
         return "Tile(x=$x, y=$y, state=$state, direction=$direction, game=$game)"

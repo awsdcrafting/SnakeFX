@@ -18,7 +18,14 @@ class CuttingHamiltonianSnake(game: IGame) : HamiltonianSnake(game)
     {
 
         val moveDir = super.getMoveDirection()
-        val apple = game.getApple()
+        val apple = game.applesByDistance(this).minBy {
+            when
+            {
+                it.x > headTile.x -> -1
+                it.y == dist -> 0
+                else -> 1
+            }
+        } ?: return moveDir
         if (game.gameInfo.gameWidth % 2 == 0)
         {
 

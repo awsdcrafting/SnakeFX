@@ -36,7 +36,25 @@ interface IGame
 
     fun getTile(x: Int, y: Int): Tile
 
-    val snake: Snake
+    val snakes: MutableMap<Snake, MoveDirection>
+
+    fun addSnake(snake: Snake)
+    {
+        snakes[snake] = MoveDirection.NORTH
+    }
+
+    val appleTiles: List<Tile>
+
+    fun applesByDistance(snake: Snake): List<Tile>
+    {
+        return applesByDistance(snake.headTile)
+    }
+
+    fun applesByDistance(tile: Tile): List<Tile>
+    {
+        return appleTiles.sortedBy { it.distTo(tile) }
+    }
+
     var paused: Boolean
 
     fun handleKeyPress(event: KeyEvent)
@@ -82,5 +100,4 @@ interface IGame
         return false
     }
 
-    fun getApple(): Tile
 }
