@@ -29,8 +29,6 @@ class Tile(
 
         if (x != other.x) return false
         if (y != other.y) return false
-        if (state != other.state) return false
-        if (direction != other.direction) return false
         if (game != other.game) return false
 
         return true
@@ -40,8 +38,6 @@ class Tile(
     {
         var result = x
         result = 31 * result + y
-        result = 31 * result + state.hashCode()
-        result = 31 * result + direction.hashCode()
         result = 31 * result + game.hashCode()
         return result
     }
